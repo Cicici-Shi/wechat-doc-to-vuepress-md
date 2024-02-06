@@ -1,0 +1,32 @@
+:root {
+  --focus: orange;
+  --bg: #fff; /*#0A001F;*/
+  --fg: #000;
+  --border: #eee;
+  --primary: #4a90e2;
+  --fg-primary: #eee;
+  --bg-primary: #ecf5ff;
+  --border-primary: #4a90e2;
+  --font-size: 14px;
+}
+body {
+  margin: 0;
+  padding: 7px;
+  font-family: Arial, sans-serif;
+}
+div {
+  width: 100%;
+  height: 300px;
+  white-space: pre-wrap;
+}
+a.button {
+  display: block;
+  padding: 0.5em 0;
+  background-color: var(--primary);
+  color: var(--fg-primary);
+  text-align: center;
+  text-decoration: none;
+  line-height: 1em;
+  border: 1px solid var(--bg);
+  border-collapse: collapse;
+}
