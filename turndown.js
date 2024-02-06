@@ -242,20 +242,61 @@ var TurndownService = (function () {
     },
   }
 
+  // 用于处理位于<pre><code>标签内的代码块，这是Markdown中的围栏代码块（fenced code blocks）。
   rules.fencedCodeBlock = {
     filter: function (node, options) {
-      return (
-        options.codeBlockStyle === 'fenced' &&
-        node.nodeName === 'PRE' &&
-        node.firstChild &&
-        node.firstChild.nodeName === 'CODE'
-      )
+      var isFencedCodeBlockStyle = options.codeBlockStyle === 'fenced'
+      var isPreNode = node.nodeName === 'PRE'
+      var hasCodeChild = false
+
+      if (node.childNodes.length >= 2) {
+        // 适配mdnice中，pre的第一个子元素是空span，第二个子元素才是code的情况
+        // Check if the first non-empty node is a <code> element
+        for (var i = 0; i < node.childNodes.length; i++) {
+          var child = node.childNodes[i]
+          if (child.nodeType === 3 && !child.textContent.trim()) continue
+          if (child.nodeName === 'SPAN' && !child.textContent.trim()) continue
+
+          if (
+            child.nodeName === 'CODE' ||
+            (node.childNodes[i + 1] &&
+              node.childNodes[i + 1].nodeName === 'CODE')
+          ) {
+            hasCodeChild = true
+          }
+          break
+        }
+      }
+
+      return isFencedCodeBlockStyle && isPreNode && hasCodeChild
     },
 
     replacement: function (content, node, options) {
-      var className = node.firstChild.getAttribute('class') || ''
+      // Find the <code> element within the <pre>
+      var codeElem = null
+      for (var i = 0; i < node.childNodes.length; i++) {
+        var child = node.childNodes[i]
+        if (child.nodeType === 3 && !child.textContent.trim()) continue
+        if (child.nodeName === 'SPAN' && !child.textContent.trim()) continue
+
+        if (child.nodeName === 'CODE') {
+          codeElem = child
+          break
+        }
+      }
+
+      if (!codeElem) return ''
+      // Replace <br> tags with newlines before extracting text content
+      var brTags = codeElem.getElementsByTagName('br')
+      while (brTags.length) {
+        var br = brTags[0]
+        var textNode = document.createTextNode('\n')
+        br.replaceWith(textNode)
+      }
+
+      var className = codeElem.getAttribute('class') || ''
       var language = (className.match(/language-(\S+)/) || [null, ''])[1]
-      var code = node.firstChild.textContent
+      var code = codeElem.textContent
 
       var fenceChar = options.fence.charAt(0)
       var fenceSize = 3
@@ -273,7 +314,7 @@ var TurndownService = (function () {
       return (
         '\n\n' +
         fence +
-        language +
+        (language ? ' ' + language : '') +
         '\n' +
         code.replace(/\n$/, '') +
         '\n' +
@@ -828,7 +869,7 @@ var TurndownService = (function () {
       headingStyle: 'setext',
       hr: '* * *',
       bulletListMarker: '*',
-      codeBlockStyle: 'indented',
+      codeBlockStyle: 'fenced',
       fence: '```',
       emDelimiter: '_',
       strongDelimiter: '**',
