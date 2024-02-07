@@ -440,7 +440,8 @@ var TurndownService = (function () {
 
     replacement: function (content, node) {
       var alt = cleanAttribute(node.getAttribute('alt'))
-      var src = node.getAttribute('src') || ''
+      var src =
+        node.getAttribute('data-src') || node.getAttribute('data-src') || ''
       var title = cleanAttribute(node.getAttribute('title'))
       var titlePart = title ? ' "' + title + '"' : ''
       return src ? '![' + alt + ']' + '(' + src + titlePart + ')' : ''

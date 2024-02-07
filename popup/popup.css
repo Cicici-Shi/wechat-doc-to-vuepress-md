@@ -10,23 +10,59 @@
   --font-size: 14px;
 }
 body {
+  width: 316px;
   margin: 0;
   padding: 7px;
   font-family: Arial, sans-serif;
 }
-div {
-  width: 100%;
-  height: 300px;
+#markdownContent {
+  height: 400px;
+  overflow: auto;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f8f8;
 }
-a.button {
-  display: block;
-  padding: 0.5em 0;
-  background-color: var(--primary);
-  color: var(--fg-primary);
+
+.generate-container {
+  text-align: right;
+}
+
+.select-box,
+.generate-btn,
+.download-button {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.select-box {
+  width: 100%;
+}
+.generate-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  cursor: pointer;
+}
+.generate-btn:hover {
+  background-color: #0056b3;
+}
+.download-button {
+  margin: 0;
+  background-color: #10b981;
+  color: white;
   text-align: center;
-  text-decoration: none;
-  line-height: 1em;
-  border: 1px solid var(--bg);
-  border-collapse: collapse;
+  cursor: pointer;
+}
+.download-button:hover {
+  background-color: #329a4a;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
 }

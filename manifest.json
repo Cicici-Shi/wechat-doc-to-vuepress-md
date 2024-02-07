@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "微信文章转vuepress-md文档",
-  "version": "2.1",
-  "description": "将微信文章转换为Markdown格式，可复制粘贴，图片下载并重命名。",
+  "version": "1.0",
+  "description": "将微信文章转换为Markdown格式，可复制粘贴，也可以直接下载。",
   "permissions": ["activeTab", "clipboardWrite", "downloads"],
   "background": {
     "scripts": ["turndown-plugin-gfm.js", "turndown.js", "background.js"],

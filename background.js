@@ -1,15 +1,19 @@
 let markdownContent = '1'
+let frontmatterInfo = {}
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'downloadImage') {
     downloadAndRenameImage(message.imageSrc, message.newName)
   } else if (message.type === 'markdownConverted') {
     markdownContent = message.markdown
+  } else if (message.type === 'frontmatterInfo') {
+    frontmatterInfo = message.frontmatterInfo
   }
 })
 
-// 监听popup请求Markdown内容的消息
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'getMarkdown') {
     sendResponse({ markdown: markdownContent })
+  } else if (message.action === 'getFrontmatterInfo') {
+    sendResponse({ frontmatterInfo })
   }
 })
