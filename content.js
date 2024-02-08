@@ -5,6 +5,24 @@ turndownService.use(turndownPluginGfm.gfm)
 // 将页面的HTML内容转换为Markdown
 const htmlContent = getArticleFromDom(document.documentElement.innerHTML)
 const markdown = turndownService.turndown(htmlContent)
+chrome.runtime.sendMessage({
+  type: 'markdownConverted',
+  message: markdown || '请在微信公众号文章中使用本扩展。',
+})
+function getArticleFromDom(domString) {
+  // parse the dom
+  const parser = new DOMParser()
+  const dom = parser.parseFromString(domString, 'text/html')
+  // 定位到特定的<div>元素
+  const targetDiv = dom.querySelector('.rich_media_content')
+
+  // 检查是否找到元素
+  if (targetDiv) {
+    return targetDiv.innerHTML
+  } else {
+    return null
+  }
+}
 
 const title = document.querySelector('.rich_media_title').textContent.trim()
 const author = document
@@ -20,23 +38,6 @@ const frontmatterInfo = {
   date,
 }
 chrome.runtime.sendMessage({ type: 'frontmatterInfo', frontmatterInfo })
-// // 将Markdown内容发送到背景脚本以便进一步处理（如保存到剪贴板等）
-chrome.runtime.sendMessage({ type: 'markdownConverted', markdown })
-
-function getArticleFromDom(domString) {
-  // parse the dom
-  const parser = new DOMParser()
-  const dom = parser.parseFromString(domString, 'text/html')
-  // 定位到特定的<div>元素
-  const targetDiv = dom.querySelector('.rich_media_content')
-
-  // 检查是否找到元素
-  if (targetDiv) {
-    return targetDiv.innerHTML
-  } else {
-    console.log('指定的元素未找到')
-  }
-}
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === 'getImageSrc') {
