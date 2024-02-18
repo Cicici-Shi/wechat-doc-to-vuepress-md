@@ -27,7 +27,9 @@ body {
   margin-bottom: 10px;
   background-color: #f8f8f8;
 }
-
+.not-selectable {
+  user-select: none; /* 用户不能选择此元素中的文本 */
+}
 .generate-container {
   text-align: right;
 }

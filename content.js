@@ -4,7 +4,6 @@ turndownService.use(turndownPluginGfm.gfm)
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getMarkdown') {
     const markdown = getMarkdown()
-    console.log('markdown', markdown)
     sendResponse({ markdown })
   } else if (request.action === 'downloadImagesFromContent') {
     const images = document.querySelectorAll('.rich_media_content img')
