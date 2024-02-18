@@ -6,6 +6,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const markdown = getMarkdown()
     console.log('markdown', markdown)
     sendResponse({ markdown })
+  } else if (request.action === 'downloadImagesFromContent') {
+    const images = document.querySelectorAll('.rich_media_content img')
+    images.forEach((img, index) => {
+      const imageUrl = img.dataset.src || img.src
+      // 发送消息到后台脚本，以使用chrome.downloads API下载图片
+      chrome.runtime.sendMessage({
+        action: 'downloadImage',
+        url: imageUrl,
+        index: index,
+      })
+    })
   }
 })
 

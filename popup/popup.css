@@ -16,7 +16,8 @@ body {
   font-family: Arial, sans-serif;
 }
 #markdownContent {
-  height: 400px;
+  max-height: 305px;
+  min-height: 100px;
   overflow: auto;
   white-space: pre-wrap;
   overflow-wrap: break-word;
@@ -33,7 +34,8 @@ body {
 
 .select-box,
 .generate-btn,
-.download-button {
+.download-button,
+.input-box {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
@@ -42,24 +44,40 @@ body {
 .select-box {
   width: 100%;
 }
+.input-box {
+  width: 93%;
+}
 .generate-btn {
   display: inline-block;
-  background-color: #007bff;
+  background-color: #64748b;
   color: white;
-  border-color: #007bff;
+  border-color: #64748b;
   cursor: pointer;
+  margin-top: 10px;
 }
 .generate-btn:hover {
-  background-color: #0056b3;
+  background-color: #475569;
+}
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 10px;
 }
 .download-button {
+  flex: 1;
   margin: 0;
-  background-color: #10b981;
+  background-color: #2563eb;
   color: white;
   text-align: center;
   cursor: pointer;
 }
 .download-button:hover {
+  background-color: #1d4ed8;
+}
+#img-download {
+  background-color: #10b981;
+}
+#img-download:hover {
   background-color: #329a4a;
 }
 label {

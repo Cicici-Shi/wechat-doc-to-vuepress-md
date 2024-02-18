@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .querySelector('.generate-btn')
     .addEventListener('click', generateFrontmatter)
+
+  document
+    .getElementById('img-download')
+    .addEventListener('click', function () {
+      const filename = document.getElementById('filename').value
+      chrome.runtime.sendMessage({
+        action: 'downloadImages',
+        prefix: filename,
+      })
+    })
+
   chrome.runtime.sendMessage(
     { action: 'fetchMarkdownForPopup' },
     function (response) {
@@ -21,15 +32,22 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function generateFrontmatter() {
+  const categoryZh = {
+    news: '新闻',
+    activity: '活动',
+    blog: '博客',
+  }
   const category = document.getElementById('category').value
+  const filename = document.getElementById('filename').value
   const { title, author, date } = frontmatterInfo
   const frontmatter = `---
 title: ${title}
 author: ${author}
 date: ${date}
+cover: /assets/img/${category}/${filename}-0.png
 head:
   - - meta
-    - name: ${category}
+    - name: ${categoryZh[category]}
 ---
       
 `

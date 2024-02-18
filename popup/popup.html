@@ -8,17 +8,28 @@
   <body>
     <label for="category">分类:</label>
     <select id="category" class="select-box">
-      <option value="活动">活动</option>
-      <option value="新闻">新闻</option>
-      <option value="博客">博客</option>
+      <option value="news">新闻</option>
+      <option value="activity">活动</option>
+      <option value="blog">博客</option>
     </select>
+    <label for="filename">文件名:</label>
+    <input
+      type="text"
+      id="filename"
+      class="input-box"
+      placeholder="用于Markdown文件名/文章URL/图片前缀"
+    />
+    <span>发版文章可以使用项目名-版本号（例如HertzBeat-1.5.0）</span>
     <div class="generate-container">
       <button class="generate-btn" onclick="generateFrontmatter()">
         生成 Frontmatter
       </button>
     </div>
-    <div id="markdownContent" readonly>Markdown内容预览：</div>
-    <div href="#" class="download-button">Download</div>
+    <div id="markdownContent" readonly>暂未获取到内容，请刷新页面重试。</div>
+    <div class="button-wrapper">
+      <div href="#" class="download-button" id="img-download">下载图片</div>
+      <div href="#" class="download-button">下载文档</div>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>
