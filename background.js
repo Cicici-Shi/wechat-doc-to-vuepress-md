@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // 使用chrome.downloads API下载图片
     chrome.downloads.download({
       url: request.url,
-      filename: `images/${filenamePrefix}-${request.index}.png`, // 你可以根据需要修改文件名的格式
+      filename: `${filenamePrefix}/${filenamePrefix}-${request.index}.png`, // 你可以根据需要修改文件名的格式
       saveAs: false, // 这里设置为false表示不弹出另存为对话框，直接下载到默认位置
     })
   }

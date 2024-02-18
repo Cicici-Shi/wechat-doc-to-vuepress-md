@@ -88,7 +88,7 @@ function convertToLocalImages() {
   const replacementFunction = () => {
     const localImagePath = `/assets/img/${category}/${filename}-${index}.png`
     index++
-    return `![图片](${localImagePath})`
+    return `![](${localImagePath})`
   }
 
   // 替换Markdown中的图片URL为本地路径
