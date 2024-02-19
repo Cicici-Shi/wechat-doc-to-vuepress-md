@@ -10,7 +10,7 @@
 
 ## 使用指南 🛠️
 
-https://github.com/Cicici-Shi/wechat-doc-to-vuepress-md/blob/main/example.png
+![例图](https://raw.githubusercontent.com/Cicici-Shi/wechat-doc-to-vuepress-md/main/example.png)
 
 1. **生成 Frontmatter：**
    从扩展的弹出界面中，选择文章分类，并为您的 Markdown 文件及图片前缀输入文件名。点击“生成 Frontmatter”，Markdown 文件头部信息将自动填充。
