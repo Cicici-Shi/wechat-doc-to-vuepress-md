@@ -82,11 +82,14 @@ head:
 
 // 由于微信文章中的图片不支持用URL预览，将md的图片替换为本地路径。搭配下载图片按钮，把图片放到对应位置即可展示。
 function convertToLocalImages() {
-  const imageRegex = /!\[.*?\]\((http.*?)\)/g
+  const imageRegex = /!\[.*?\]\((http.*?mmbiz_(\w+).*?)\)/g
 
   let index = 0
-  const replacementFunction = () => {
-    const localImagePath = `/assets/img/${category}/${filename}-${index}.png`
+  const replacementFunction = (match, imageUrl, format) => {
+    // 检查图片URL中的格式
+    const extension = format || 'png'
+
+    const localImagePath = `/assets/img/${category}/${filename}-${index}.${extension}`
     index++
     return `![](${localImagePath})`
   }
