@@ -4,13 +4,13 @@
 
 🚀 此 Chrome 扩展专为将微信公众号文章无缝转换成 VuePress 支持的 Markdown 格式而设计。它不仅自动化生成 Frontmatter 头部，还能下载文档和相关图片，极大简化了整个转换流程。虽然主要为 [dromara 官网](https://github.com/dromara/dromara.github.io) 定制，也欢迎广泛用于各种微信公众号文章的转换工作，即便可能需要微调 frontmatter 或图片路径。请随意 fork 并按需调整！
 
-📦 与 mdnice 完美兼容，确保表格、代码块和标题等 Markdown 元素无损转换。
+📦 与 mdnice 编辑器完美兼容，确保表格、代码块和标题等 Markdown 元素无损转换。
 
 🖼️ 对于微信公众号的图片，由于存在版权问题通常不能在其他地方直接引用。通过此插件，您可以将图片下载到本地，无障碍展示。
 
 ## 使用指南 🛠️
 
-![例图](example.png)
+![例图](https://github.com/Cicici-Shi/wechat-doc-to-vuepress-md/blob/main/example.png)
 
 1. **生成 Frontmatter：**
    从扩展的弹出界面中，选择文章分类，并为您的 Markdown 文件及图片前缀输入文件名。点击“生成 Frontmatter”，Markdown 文件头部信息将自动填充。
