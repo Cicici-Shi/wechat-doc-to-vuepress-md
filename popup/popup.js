@@ -22,20 +22,36 @@ document.addEventListener('DOMContentLoaded', function () {
     .querySelector('.generate-btn')
     .addEventListener('click', generateFrontmatter)
 
-  document
-    .getElementById('img-download')
-    .addEventListener('click', function () {
-      const filename = document.getElementById('filename').value
-      chrome.runtime.sendMessage({
-        action: 'downloadImages',
-        prefix: filename,
-      })
-    })
+  document.getElementById('img-download').addEventListener(
+    'click',
+    (function () {
+      // 3秒内防重
+      let clickable = true
+
+      return function () {
+        if (!clickable) return
+
+        clickable = false
+        this.classList.add('disabled')
+
+        const filename = document.getElementById('filename').value || 'default'
+        chrome.runtime.sendMessage({
+          action: 'downloadImages',
+          prefix: filename,
+        })
+
+        setTimeout(() => {
+          clickable = true
+          this.classList.remove('disabled')
+        }, 3000)
+      }
+    })()
+  )
 
   document.getElementById('md-download').addEventListener('click', function () {
     const content = document.getElementById('markdownContent').textContent
     const filename =
-      document.getElementById('filename').value || 'default-filename.md' // 如果没有输入，则使用默认文件名
+      document.getElementById('filename').value || 'default-filename' // 如果没有输入，则使用默认文件名
 
     // 创建一个blob对象，指定内容类型为markdown
     const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' })

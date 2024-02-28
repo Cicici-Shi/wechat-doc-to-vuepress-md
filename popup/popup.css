@@ -82,6 +82,12 @@ body {
 #img-download:hover {
   background-color: #329a4a;
 }
+/* 定义按钮禁用时的样式 */
+#img-download.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  pointer-events: none; /* 禁止在禁用状态下的任何鼠标事件 */
+}
 label {
   display: block;
   margin-bottom: 5px;
