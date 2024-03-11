@@ -1,4 +1,4 @@
-# 微信公众号文章转换至 VuePress
+# 微信文章转 vuepress-md 文档
 
 ## 简介 📖
 
@@ -10,11 +10,22 @@
 
 ## 安装指南 📦
 
+### 从 Chrome 应用商店安装
+
+您可以方便地从 Chrome 应用商店安装此扩展程序：
+
+- 直接访问 [微信文章转 vuepress-md 文档](https://chromewebstore.google.com/detail/%E5%BE%AE%E4%BF%A1%E6%96%87%E7%AB%A0%E8%BD%ACvuepress-md%E6%96%87%E6%A1%A3/blapejlcolppjekempmodkbofkkgmaop?hl=zh-CN&utm_source=ext_sidebar) 安装。
+- 或者，在 Chrome 应用商店搜索“微信文章转 vuepress-md 文档”。
+
+### 通过 GitHub 仓库手动安装
+
+如果您希望手动安装扩展程序，可以按照以下步骤操作：
+
 1. 克隆扩展程序仓库到本地：
 
-```
-git clone https://github.com/Cicici-Shi/wechat-doc-to-vuepress-md.git
-```
+   ```bash
+   git clone https://github.com/Cicici-Shi/wechat-doc-to-vuepress-md.git
+   ```
 
 2. 在本地文件系统中，找到克隆的仓库文件夹。
 
